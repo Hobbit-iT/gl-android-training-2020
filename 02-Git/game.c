@@ -45,6 +45,31 @@ E_VAL get_bid_value(char c_bid)
             break;
         default:
             printf("wrong input\n");
+            break;
+    }
+
+    return val;
+}
+
+E_VAL get_bid_value_by_num(int bid)
+{
+    E_VAL val = eOTHER;
+    switch (bid)
+    {
+        case eROCK:
+            printf("Rock.");
+            val = eROCK;
+            break;
+        case ePAPER:
+            printf("Parer.");
+            val = ePAPER;
+            break;
+        case eSCISSORS:
+            printf("Scissors.");
+            val = eSCISSORS;
+            break;
+        default:
+            break;
     }
 
     return val;
@@ -53,7 +78,7 @@ E_VAL get_bid_value(char c_bid)
 E_RESULT rock_compare(E_VAL bid)
 {
     E_RESULT res = eWIN;
-    printf("bid : %d\n", bid);
+
     switch (bid)
     {
         case eROCK:
@@ -130,14 +155,14 @@ E_RESULT start_round(void)
     E_VAL my_bid = eOTHER;
     E_VAL your_bid = eOTHER;
 
-    printf("Please choose: rock (r) - paper (p) - scissors (s)\n");
-    scanf("%c", &rps);
+    printf("\nPlease choose: rock (r) - paper (p) - scissors (s)\n");
+    rps = getchar();
     printf("You choose ");
     your_bid = get_bid_value(rps);
     printf("I choose ");
     srand((unsigned) time(&t));
-    my_bid = rand() % 3;
-
+    my_bid = get_bid_value_by_num(rand() % 3);
+    printf("\n");
     switch (your_bid)
     {
         case eROCK:
