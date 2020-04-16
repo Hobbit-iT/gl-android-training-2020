@@ -24,6 +24,10 @@ E_VAL get_bid_value(char c_bid)
     E_VAL val = eOTHER;
     switch (c_bid)
     {
+        case 'Q':
+        case 'q':
+             printf("Quit\n");
+             break;
         case 'R':
         case 'r':
             printf("Rock.");
@@ -39,10 +43,7 @@ E_VAL get_bid_value(char c_bid)
             printf("Scissors.");
             val = eSCISSORS;
             break;
-        case 'Q':
-        case 'q':
-            printf("Quit\n");
-            break;
+
         default:
             printf("wrong input\n");
             break;
