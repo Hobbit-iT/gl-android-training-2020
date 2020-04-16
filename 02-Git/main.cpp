@@ -60,33 +60,50 @@ int main() {
      */
     WINNING_COMBINATION winning_combinations[] = {
         {"s", "p", "Scissors cuts paper"},
-        {"r", "p", "Paper covers rock"},
+        {"p", "r", "Paper covers rock"},
         {"r", "s", "Rock crushes scissors"}
     };
 
 
 
     while (1) {
-        std::string answer;
+        std::string user_choice;
         do {
             std::cout << "Please choose: rock (r) - paper (p) - scissors (s)" << std::endl;
-            std::cin >> answer;
-        } while (!is_good_option(answer));
+            std::cin >> user_choice;
+        } while (!is_good_option(user_choice));
         
-        if (answer == "exit") {
+        if (user_choice == "exit") {
             break;
         }
 
         std::string bot_choice = bot_picks();
 
         std::cout
-                << "You choose " << get_option_name_by_code(answer.c_str())
+                << "You choose " << get_option_name_by_code(user_choice.c_str())
                 << ", I choose " << get_option_name_by_code(bot_choice.c_str())
                 << std::endl;
 
-        //TODO: implement arbiter
-        //TODO: tell user who won
 
+        std::string game_resolution = "No winner";
+        std::string resolution_explanation = "equal(?) answers";
+        for(auto combination: winning_combinations){
+            if(user_choice == combination.gamer1_choise && bot_choice == combination.gamer2_choice){
+                game_resolution = "You won";
+                resolution_explanation = combination.explanation;
+                break;
+            }
+        }
+        for(auto combination: winning_combinations){
+            if(bot_choice == combination.gamer1_choise && user_choice == combination.gamer2_choice){
+                game_resolution = "I won";
+                resolution_explanation = combination.explanation;
+                break;
+            }
+        }
+        
+        std::cout << game_resolution << " - " << resolution_explanation << std::endl;
+        
     }
 
 
