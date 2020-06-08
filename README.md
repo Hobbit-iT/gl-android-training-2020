@@ -1,1 +1,0 @@
-#Project for roop of GL components
