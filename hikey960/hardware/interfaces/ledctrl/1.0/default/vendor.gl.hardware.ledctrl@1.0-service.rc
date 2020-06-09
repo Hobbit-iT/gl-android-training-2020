@@ -5,7 +5,7 @@ service vendor.gl.hardware.ledctrl-1-0 /vendor/bin/hw/vendor.gl.hardware.ledctrl
     user system
     group system    
     oneshot
-    #disabled
+    disabled
 
 on early-boot
     chown system system /sys/class/leds/user_led1/brightness
@@ -16,4 +16,3 @@ on early-boot
     chown system system /sys/class/leds/user_led3/trigger
     chown system system /sys/class/leds/user_led4/brightness
     chown system system /sys/class/leds/user_led4/trigger
-    
