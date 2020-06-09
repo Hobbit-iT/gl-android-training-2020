@@ -3,10 +3,12 @@ package com.ledctrlservice;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.util.Log;
 
 import vendor.gl.hardware.ledctrl.V1_0.ILedCtrl;
 
 public class LedCtrlService extends Service {
+    final static String TAG = "LedCtrlService ";
     ILedCtrl ledctrl;
 
     public LedCtrlService() {
@@ -18,7 +20,7 @@ public class LedCtrlService extends Service {
             try {
                 return ledctrl.setLED(led, state);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(TAG,"setLED error");
             }
             return 0;
         };
@@ -34,7 +36,7 @@ public class LedCtrlService extends Service {
         try {
             ledctrl = ILedCtrl.getService(true);
         } catch (Exception e) {
-            e.printStackTrace();
+            Log.e(TAG,"setLED get service error");
         }
     }
 }
